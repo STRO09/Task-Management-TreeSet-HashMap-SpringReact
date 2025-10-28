@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -41,5 +42,20 @@ public class TaskService {
     public void deleteTask(Long id) {
         repo.deleteById(id);
         cache.removeTask(id);
+    }
+    
+    public Task updateTask(Long id, Task updatedTask) {
+        // Ensure the ID matches
+        updatedTask.setId(id);
+        Task saved = repo.save(updatedTask);
+        cache.updateTask(saved);
+        return saved;
+    }
+
+    public List<Task> getTasksByLabel(String label) {
+        return cache.getAllTasks().stream()
+                .filter(t -> t.getLabelPriority() != null &&
+                             t.getLabelPriority().toString().equalsIgnoreCase(label))
+                .collect(Collectors.toList());
     }
 }
