@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
@@ -39,6 +41,10 @@ public class Task implements Comparable<Task> {
 
 	@Column
 	private LocalDateTime createdAt = LocalDateTime.now();
+	
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 	@Column
 	private boolean completed = false;

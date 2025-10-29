@@ -16,7 +16,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 	List<Task> findByUserIdOrderByDeadlineAsc(Long userId);
 
 	// Optional: filter by label (important, medium, less)
-	List<Task> findByUserIdAndLabel(Long userId, String label);
+	List<Task> findByUserIdAndLabelPriority(Long userId, String label);
 
 	// Optional: find tasks due before a specific time (for reminders later)
 	List<Task> findByUserIdAndDeadlineBefore(Long userId, LocalDateTime time);
