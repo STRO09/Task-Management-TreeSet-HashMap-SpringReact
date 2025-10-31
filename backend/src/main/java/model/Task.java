@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
@@ -33,21 +34,21 @@ public class Task implements Comparable<Task> {
 
 	@Column
 	@Enumerated(EnumType.STRING)
-	private LabelPriority labelPriority = LabelPriority.NONE;
+	private LabelPriority labelPriority;
 
 	@Column(name = "deadline")
 	@Future(message = "Deadline must be in the future")
 	private LocalDateTime deadline;
 
 	@Column
-	private LocalDateTime createdAt = LocalDateTime.now();
+	private LocalDateTime createdAt;
 	
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User creator;
 
 	@Column
-	private boolean completed = false;
+	private boolean completed;
 
 	// Constructors
 	public Task() {
@@ -59,6 +60,13 @@ public class Task implements Comparable<Task> {
 		this.labelPriority = labelPriority;
 		this.deadline = deadline;
 		this.createdAt = LocalDateTime.now();
+	}
+	
+	@PrePersist
+	protected void onCreate() {
+		if(labelPriority == null)  labelPriority = LabelPriority.NONE;
+		if(createdAt == null)  createdAt = LocalDateTime.now();
+		completed = false;
 	}
 
 	// Getters and Setters
@@ -116,6 +124,14 @@ public class Task implements Comparable<Task> {
 
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
+	}
+
+	public User getCreator() {
+		return creator;
+	}
+
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
 	// Comparator logic for TreeSet ordering
