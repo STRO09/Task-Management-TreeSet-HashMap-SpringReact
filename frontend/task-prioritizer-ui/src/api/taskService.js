@@ -1,6 +1,4 @@
-import axios from "axios";
-
-const API = axios.create({ baseURL: import.meta.env.VITE_API_BASE_URL });
+import API from "./api";
 
 export const getTasks = (label) =>
   label ? API.get(`/tasks?label=${label}`) : API.get("/tasks");

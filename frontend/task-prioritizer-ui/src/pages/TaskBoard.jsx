@@ -22,6 +22,12 @@ export default function TaskBoard() {
 
   return (
     <Container sx={{ mt: 4 }}>
+      <div>
+        <h2>Dashboard</h2>
+        <div>Welcome, {auth.user?.sub || auth.user?.username || "user"}!</div>
+        <pre>{JSON.stringify(auth.user, null, 2)}</pre>
+        <button onClick={() => auth.logout()}>Logout</button>
+      </div>
       <Typography variant="h4" gutterBottom>
         My Tasks
       </Typography>
