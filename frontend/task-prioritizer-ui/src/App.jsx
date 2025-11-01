@@ -15,14 +15,13 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/oauth/callback" element={<OAuthCallback />} />
           <Route
-            path="/dashboard"
+            path="/"
             element={
               <ProtectedRoute>
                 <Taskboard />
               </ProtectedRoute>
             }
           />
-          <Route path="/" element={<div>Home - <a href="/dashboard">Dashboard</a></div>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
