@@ -15,7 +15,6 @@ Built with **Spring Boot, React, Redux Toolkit, and JWT authentication**.
   2. **Label priority** (Important → Medium → Low)
   3. **Insertion order** (FIFO among equals)
 * **Label-based filtering** via sidebar
-* **Real-time updates** using Spring WebSockets + STOMP
 * **Per-user task visibility**
 * **Clean, minimal UI** with modal-based task creation
 * **Three-dot menu** for task deletion
