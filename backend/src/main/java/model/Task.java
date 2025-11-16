@@ -34,7 +34,7 @@ public class Task implements Comparable<Task> {
 
 	@Column
 	@Enumerated(EnumType.STRING)
-	private LabelPriority labelPriority;
+	private LabelPriority label;
 
 	@Column(name = "deadline")
 	@Future(message = "Deadline must be in the future")
@@ -54,17 +54,17 @@ public class Task implements Comparable<Task> {
 	public Task() {
 	}
 
-	public Task(String title, String description, LabelPriority labelPriority, LocalDateTime deadline) {
+	public Task(String title, String description, LabelPriority label, LocalDateTime deadline) {
 		this.title = title;
 		this.description = description;
-		this.labelPriority = labelPriority;
+		this.label = label;
 		this.deadline = deadline;
 		this.createdAt = LocalDateTime.now();
 	}
 	
 	@PrePersist
 	protected void onCreate() {
-		if(labelPriority == null)  labelPriority = LabelPriority.NONE;
+		if(label == null)  label = LabelPriority.NONE;
 		if(createdAt == null)  createdAt = LocalDateTime.now();
 		completed = false;
 	}
@@ -94,12 +94,12 @@ public class Task implements Comparable<Task> {
 		this.description = description;
 	}
 
-	public LabelPriority getLabelPriority() {
-		return labelPriority;
+	public LabelPriority getLabel() {
+		return label;
 	}
 
-	public void setLabelPriority(LabelPriority labelPriority) {
-		this.labelPriority = labelPriority;
+	public void setLabel(LabelPriority label) {
+		this.label = label;
 	}
 
 	public LocalDateTime getDeadline() {
@@ -149,7 +149,7 @@ public class Task implements Comparable<Task> {
 		}
 
 		// 2. Label priority (Important > Medium > Low > None)
-		int labelCompare = other.labelPriority.ordinal() - this.labelPriority.ordinal();
+		int labelCompare = other.label.ordinal() - this.label.ordinal();
 		if (labelCompare != 0)
 			return labelCompare;
 

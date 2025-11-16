@@ -53,7 +53,7 @@ public class TaskService {
 
 	public List<Task> getTasksByLabel(String label) {
 		return cache.getAllTasks().stream()
-				.filter(t -> t.getLabelPriority() != null && t.getLabelPriority().toString().equalsIgnoreCase(label))
+				.filter(t -> t.getLabel() != null && t.getLabel().toString().equalsIgnoreCase(label))
 				.collect(Collectors.toList());
 	}
 	

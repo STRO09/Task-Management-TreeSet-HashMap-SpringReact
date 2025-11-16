@@ -54,7 +54,7 @@ public class TaskCollectionManager {
 			else if (t2.getDeadline() != null)
 				return 1;
 
-			int labelCmp = t1.getLabelPriority().toString().compareToIgnoreCase(t2.getLabelPriority().toString());
+			int labelCmp = t1.getLabel().toString().compareToIgnoreCase(t2.getLabel().toString());
 			if (labelCmp != 0)
 				return labelCmp;
 
