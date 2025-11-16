@@ -1,6 +1,8 @@
 # 🗂️ Task Management System (Spring Boot + React)
 
-A full-stack **Task Management System** that lets users create, organize, and track tasks using labels and deadlines — automatically sorted using efficient data structures. Built with **Spring Boot**, **React**, and **WebSockets (STOMP)** for real-time task updates.
+A full-stack **Task Management System** designed to showcase clean architecture, backend sorting logic, and modern frontend state management. Tasks can be created, updated, deleted, filtered, and are always kept in automatically sorted order based on deadline, priority label, and insertion time.
+
+Built with **Spring Boot, React, Redux Toolkit, and JWT authentication**.
 
 ---
 
@@ -24,6 +26,31 @@ A full-stack **Task Management System** that lets users create, organize, and tr
   * Server-sent reminders before deadlines
   * Completed tasks archive (stack-based undo)
 
+### 🔐 Authentication
+
+* User registration & login
+* JWT-based authentication
+* Protected CRUD routes
+* User-specific task visibility
+
+### 📌 Task Operations
+
+* Create / Edit / Delete tasks
+* Auto-sorted tasks based on:
+* Nearest deadline first
+* Label priority (Important → Medium → Low → None)
+* Insertion order when equal
+
+### 🎨 UI & UX
+
+* Clean, minimal UI
+* Add/Edit task modal
+* Three-dot menu for deletion
+* Sidebar label filters
+* Global state managed via Redux
+
+
+
 ---
 
 ## 🧠 DSA Design
@@ -41,17 +68,30 @@ A full-stack **Task Management System** that lets users create, organize, and tr
 
 **Backend:**
 
-* Java 17, Spring Boot 3
-* Spring Web, Spring WebSocket, STOMP
-* In-memory `TreeSet + HashMap` for DSA logic
-* Optional: PostgreSQL / MongoDB persistence layer
+* Java 8
+* Spring Boot 2.7.x
+* Spring Web
+* Spring Security + JWT
+* Spring Data JPA
+* PostgreSQL
+
+**Backend Layers: **
+
+* Controller: REST endpoints
+* Service: sorting logic, validation, security
+* Repository: JPA interfaces
+* Entity: Task + User
+* Security: JWT filters, authentication manager
+
+
+Responsive UI with Flexbox / CSS
 
 **Frontend:**
 
 * React 18 + Vite
 * Axios for API calls
-* WebSocket client for live updates
-* Responsive design with Flexbox/Bootstrap
+* Redux Toolkit
+* React Router
 
 ---
 
@@ -78,11 +118,10 @@ A full-stack **Task Management System** that lets users create, organize, and tr
 
 ## 🔒 Future Enhancements
 
-* JWT-based authentication
 * Notification service for upcoming deadlines
 * Task recurrence logic
 * Archive & undo using stack-based history
-* Database integration for persistence
+* Drag-and-drop ordering
 
 ---
 
