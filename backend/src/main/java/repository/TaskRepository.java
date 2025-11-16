@@ -10,11 +10,11 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
 	// Find all tasks belonging to a specific user
 	List<Task> findByCreatorId(Long creatorId);
-
-
-	// Optional: filter by label (important, medium, less)
-	List<Task> findByCreatorIdAndLabelPriority(Long creatorId, String label);
 	
 	void deleteByCreatorId(Long creatorId);
+	
+
+	// Optional: filter by label (important, medium, less)
+	List<Task> findByCreatorIdAndLabel(Long creatorId, String label);
 
 }
